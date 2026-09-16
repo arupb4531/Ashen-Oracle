@@ -1,0 +1,362 @@
+/* ─── Chat Area — Soulslike atmospheric UI ─────────────────────────────────── */
+
+.chatArea {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  flex-grow: 1;
+  position: relative;
+  background: rgba(4, 3, 8, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ─── Header ──────────────────────────────────────────────────────────────── */
+.header {
+  padding: 18px 28px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(3, 2, 8, 0.96) 0%, rgba(3, 2, 8, 0.7) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+  position: relative;
+  z-index: 10;
+}
+
+.headerInfo { display: flex; align-items: center; gap: 18px; }
+
+.headerAvatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--theme-color, var(--accent-ember));
+  box-shadow:
+    0 0 0 3px rgba(0,0,0,0.6),
+    0 0 18px var(--theme-color, rgba(226,88,34,0.4));
+  transition: box-shadow 0.5s;
+}
+
+.headerText {}
+.headerTitle {
+  font-family: var(--font-label);
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  color: var(--text-bright);
+  margin: 0;
+  text-shadow: 0 0 20px var(--theme-color, rgba(226,88,34,0.3));
+}
+.headerMode {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  color: var(--theme-color, var(--accent-ember));
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 2px 0 0;
+  opacity: 0.85;
+}
+
+.headerActions { display: flex; gap: 8px; }
+
+.actionBtn {
+  color: var(--text-ash);
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+.actionBtn:hover { color: var(--text-relic); background: rgba(255,255,255,0.05); }
+.activeActionBtn { color: var(--theme-color, var(--accent-ember)); }
+
+/* ─── Runic divider under header ──────────────────────────────────────────── */
+.runicDivider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 28px;
+  color: var(--theme-color, var(--accent-ember));
+  font-size: 0.62rem;
+  letter-spacing: 4px;
+  opacity: 0.35;
+  user-select: none;
+}
+.runicDivider::before, .runicDivider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, currentColor, transparent);
+}
+
+/* ─── Messages container ──────────────────────────────────────────────────── */
+.messagesContainer {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 28px 28px 8px;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+/* ─── Empty state ─────────────────────────────────────────────────────────── */
+.emptyState {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  max-width: 540px;
+  animation: fadeInUp 0.6s ease;
+}
+
+.emptyGlyph {
+  font-size: 3.5rem;
+  animation: floatGlyph 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 24px var(--theme-color, rgba(226,88,34,0.6)));
+}
+
+.emptyTitle {
+  font-family: var(--font-label);
+  font-size: 1.35rem;
+  color: var(--text-bright);
+  letter-spacing: 0.1em;
+}
+
+.emptyTagline {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--text-ash);
+  font-style: italic;
+  line-height: 1.7;
+  max-width: 380px;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.suggestBtn {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  color: var(--text-ash);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  transition: all 0.25s;
+}
+.suggestBtn:hover {
+  border-color: var(--theme-color, var(--accent-ember));
+  color: var(--text-relic);
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 12px rgba(var(--theme-rgb, 226,88,34), 0.08);
+}
+
+/* ─── Message list ────────────────────────────────────────────────────────── */
+.messageList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 840px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.messageWrapper {
+  display: flex;
+  gap: 14px;
+  animation: fadeInUp 0.35s ease;
+}
+.userWrapper  { align-self: flex-end; justify-content: flex-end; max-width: 82%; }
+.aiWrapper    { align-self: flex-start; max-width: 92%; }
+
+.messageAvatar img {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* ─── Message bubbles ──────────────────────────────────────────────────────── */
+.message {
+  padding: 16px 22px;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  position: relative;
+}
+
+.userMessage {
+  background: rgba(22, 18, 32, 0.82);
+  color: var(--text-relic);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-right: 2px solid rgba(120,105,150,0.35);
+  border-radius: 6px 0 6px 6px;
+  font-family: var(--font-body);
+  font-size: 0.93rem;
+  box-shadow: var(--shadow-deep);
+}
+
+.aiMessage {
+  background: linear-gradient(135deg, rgba(14, 10, 24, 0.9) 0%, rgba(10, 8, 18, 0.94) 100%);
+  color: var(--text-relic);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-left: 2px solid var(--theme-color, var(--accent-ember));
+  border-radius: 0 6px 6px 6px;
+  font-family: var(--font-serif);
+  font-size: 0.97rem;
+  box-shadow:
+    var(--shadow-deep),
+    -6px 0 20px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+/* Corner rune decoration on AI messages */
+.aiMessage::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 10px; height: 10px;
+  border-top: 2px solid var(--theme-color, var(--accent-ember));
+  border-left: 2px solid var(--theme-color, var(--accent-ember));
+  opacity: 0.6;
+}
+.aiMessage::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 10px; height: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-right: 1px solid rgba(255,255,255,0.04);
+}
+
+/* ─── Loading animation — ember dots ──────────────────────────────────────── */
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 0 6px;
+}
+.loadingLabel {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  color: var(--text-ash);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--theme-color, var(--accent-ember));
+  box-shadow: 0 0 8px var(--theme-color, var(--accent-ember));
+  animation: emberPulse 1.6s ease-in-out infinite;
+}
+.dot:nth-child(2) { animation-delay: 0.22s; }
+.dot:nth-child(3) { animation-delay: 0.44s; }
+
+/* ─── Input area ──────────────────────────────────────────────────────────── */
+.inputArea {
+  padding: 0 24px 28px;
+  background: linear-gradient(to top, rgba(3,2,8,1) 50%, transparent);
+  position: relative;
+}
+.inputArea::before {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-bottom: 18px;
+  background: linear-gradient(to right,
+    transparent, rgba(255,255,255,0.045), transparent);
+}
+
+.inputForm {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background: rgba(10, 8, 18, 0.96);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-sm);
+  padding: 5px 6px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.025);
+}
+.inputForm:focus-within {
+  border-color: rgba(var(--theme-rgb, 226,88,34), 0.4);
+  box-shadow:
+    0 2px 24px rgba(0,0,0,0.5),
+    0 0 24px rgba(var(--theme-rgb, 226,88,34), 0.06),
+    inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+.inputField {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-bright);
+  padding: 13px 16px;
+  font-family: var(--font-serif);
+  font-size: 0.96rem;
+  font-style: italic;
+  outline: none;
+}
+.inputField::placeholder {
+  color: var(--text-ash);
+  opacity: 0.65;
+  font-style: italic;
+}
+
+.micBtn, .sendBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+.micBtn { color: var(--text-ash); }
+.micBtn:hover { color: var(--text-relic); background: rgba(255,255,255,0.05); }
+
+.sendBtn { color: var(--theme-color, var(--accent-ember)); }
+.sendBtn:hover:not(:disabled) {
+  background: var(--theme-color, var(--accent-ember));
+  color: rgba(0,0,0,0.9);
+  box-shadow: 0 0 16px rgba(var(--theme-rgb, 226,88,34), 0.35);
+}
+.sendBtn:disabled { opacity: 0.3; cursor: not-allowed; color: var(--text-ash); }
+
+/* ─── Mode selector pills ─────────────────────────────────────────────────── */
+.modeBar {
+  max-width: 860px;
+  margin: 0 auto 12px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.modePill {
+  font-family: var(--font-label);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  color: var(--text-ash);
+  background: rgba(255,255,255,0.02);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.modePill:hover { color: var(--text-relic); border-color: rgba(255,255,255,0.12); }
+.activePill {
+  background: rgba(var(--theme-rgb, 226,88,34), 0.12);
+  border-color: rgba(var(--theme-rgb, 226,88,34), 0.4);
+  color: var(--theme-color, var(--accent-ember));
+}

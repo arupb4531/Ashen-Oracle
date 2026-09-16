@@ -1,0 +1,18 @@
+/* ─── Chat Page Layout ────────────────────────────────────────────────────── */
+
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background: #020104; /* Base darkness behind canvas */
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}

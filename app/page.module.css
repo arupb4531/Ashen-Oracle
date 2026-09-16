@@ -1,0 +1,328 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--text-bright);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.nav a {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: var(--accent-ember);
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}
+
+.hero {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+  min-height: 70vh;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+  animation: fadeIn 2s ease-out;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin-bottom: 48px;
+  font-style: italic;
+  animation: fadeIn 3s ease-out;
+}
+
+.heroActions {
+  display: flex;
+  gap: 24px;
+  animation: fadeIn 4s ease-out;
+}
+
+.ctaBtn {
+  min-width: 200px;
+}
+
+.about {
+  padding: 96px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.contentBox {
+  max-width: 800px;
+  background-color: var(--bg-color-panel);
+  border: 1px solid var(--border-color);
+  padding: 48px;
+  border-radius: var(--panel-radius);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+}
+
+.contentBox h2 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+  color: var(--accent-gold);
+}
+
+.contentBox p {
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* ─── Guides Section ──────────────────────────────────────────────────────── */
+
+.guides {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 120px;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.sectionHeader {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  letter-spacing: 0.15em;
+  color: var(--text-bright);
+  text-transform: uppercase;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--text-ash);
+  font-style: italic;
+}
+
+.guidesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 32px;
+}
+
+.guideCard {
+  background: rgba(14, 10, 18, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-top: 2px solid rgba(var(--card-theme), 0.5);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.guideCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at top right, rgba(var(--card-theme), 0.06), transparent 70%);
+  pointer-events: none;
+}
+
+.guideCard:hover {
+  transform: translateY(-4px);
+  background: rgba(18, 14, 24, 0.85);
+  border-top: 2px solid rgba(var(--card-theme), 0.9);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6), 0 0 20px rgba(var(--card-theme), 0.15);
+}
+
+.guideCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+}
+
+.guideAvatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+  border: 1px solid rgba(var(--card-theme), 0.4);
+  box-shadow: 0 0 14px rgba(var(--card-theme), 0.2);
+}
+
+.guideImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.guideFallback {
+  display: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(var(--card-theme), 0.1);
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: rgba(var(--card-theme), 1);
+  text-shadow: 0 0 8px rgba(var(--card-theme), 0.6);
+}
+
+.guideName {
+  font-family: var(--font-label);
+  font-size: 1.05rem;
+  color: var(--text-bright);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+}
+
+.guideRole {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  color: rgba(var(--card-theme), 0.9);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.guideQuote {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--text-relic);
+  font-style: italic;
+  padding-left: 14px;
+  border-left: 2px solid rgba(var(--card-theme), 0.3);
+  line-height: 1.6;
+  z-index: 1;
+}
+
+.guideDesc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-ash);
+  line-height: 1.7;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.guideTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  z-index: 1;
+}
+
+.tag {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  color: var(--text-ash);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.awakenLink {
+  margin-top: 8px;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  color: rgba(var(--card-theme), 1);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 12px;
+  background: rgba(var(--card-theme), 0.08);
+  border: 1px solid rgba(var(--card-theme), 0.2);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 0.2s;
+  z-index: 1;
+}
+
+.awakenLink:hover {
+  background: rgba(var(--card-theme), 0.15);
+  box-shadow: 0 0 15px rgba(var(--card-theme), 0.2);
+  color: #fff;
+}
+
+.footer {
+  padding: 32px;
+  text-align: center;
+  color: var(--text-relic);
+  line-height: 1.8;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: var(--bg-color-elevated);
+  position: relative;
+  z-index: 10;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+  
+  .heroActions {
+    flex-direction: column;
+  }
+}

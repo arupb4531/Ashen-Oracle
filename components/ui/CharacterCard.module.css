@@ -1,0 +1,119 @@
+.card {
+  background-color: var(--bg-color-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--panel-radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--theme-color);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5), 0 0 15px var(--theme-color);
+}
+
+.selected {
+  border-color: var(--theme-color);
+  box-shadow: 0 0 25px var(--theme-color);
+  transform: scale(1.02);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.selectionRing {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--theme-color);
+  box-shadow: inset 0 0 20px var(--theme-color);
+  animation: pulse 2s infinite;
+  pointer-events: none;
+}
+
+.content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.name {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  color: var(--text-bright);
+}
+
+.quote {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.tag {
+  font-size: 0.75rem;
+  background-color: var(--border-color);
+  color: var(--text-main);
+  padding: 4px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.previewBtn {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-highlight);
+  color: var(--text-main);
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.previewBtn:hover {
+  background-color: var(--theme-color);
+  color: #fff;
+  border-color: var(--theme-color);
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
