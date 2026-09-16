@@ -19,3 +19,6 @@ Ashen Oracle is built using a highly modern and opinionated web stack designed f
 
 ## Audio Engine
 - **Web Audio API**: Instead of loading large static audio files, ambient soundscapes (fire, wind, caves) are procedurally generated entirely on the client side using oscillators and noise buffers. This results in zero bandwidth overhead for audio.
+
+## Hosting & Deployment
+- **Vercel**: Handles the CI/CD pipeline, globally distributes static assets across their Edge Network, and executes the `/api/chat` route dynamically as a serverless function.

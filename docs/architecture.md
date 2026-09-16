@@ -38,3 +38,12 @@ ashen-oracle/
 
 Styling is handled via **CSS Modules**. Each major component has a corresponding `.module.css` file.
 Global CSS variables (`globals.css`) are injected dynamically based on the selected persona's `scene.accentRgb` to alter the entire application's mood in real-time.
+
+## Deployment Architecture
+
+Ashen Oracle is optimized for deployment on **Vercel**, taking full advantage of their Edge Network and Serverless Functions:
+
+1. **Hosting**: Hosted on Vercel at `https://ashen-oracle.vercel.app`.
+2. **Serverless APIs**: The `/api/chat` endpoints run as Vercel Serverless Functions, ensuring scalable and secure handling of API keys without exposing them to the client.
+3. **Static Assets**: The `intro.mp4` video and ambient images in the `public/` directory are heavily cached at the edge for rapid delivery worldwide.
+4. **Environment Security**: All provider keys (`GEMINI_API_KEY`) are managed strictly within Vercel's Environment Variables dashboard.

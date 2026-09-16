@@ -12,7 +12,7 @@
 
 Ashen Oracle is a dark-fantasy web application that serves as an immersive AI assistant for game lore, combat strategies, and equipment upgrades. Inspired by the grim and atmospheric worlds of Souls-like games, it provides users with distinct "Guides"—each possessing unique personalities, thematic styling, and procedural ambient audio—to answer questions and assist in their journeys.
 
-**Live Deployment:** [Vercel Dashboard](https://vercel.com/arup4)
+**Live Deployment:** [https://ashen-oracle.vercel.app](https://ashen-oracle.vercel.app)
 
 ## 🌟 Features
 
