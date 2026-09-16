@@ -17,7 +17,7 @@ Ashen Oracle is a dark-fantasy web application that serves as an immersive AI as
 ## 🌟 Features
 
 - **Cinematic Experience:** Features a fullscreen video preloader that acts as an atmospheric entry point before transitioning seamlessly into the application.
-- **Multiple AI Guides (Personas):** Choose from specialized guides like The Ember Keeper, The Oathbound Knight, or The Hollow Scholar. Each guide alters the UI theme, dialogue style, and system prompt.
+- **Multiple AI Guides (Personas):** Choose from specialized guides like The Ember Keeper, The Oathbound Knight, The Hollow Scholar, The Grave Prophet, The Old Smith, or The Moonlit Duelist. Each guide alters the UI theme, dialogue style, and system prompt.
 - **Dynamic Audio System:** Procedural ambient soundscapes (e.g., crackling fire, howling wind, echoing tombs) mapped to the selected guide using the Web Audio API.
 - **Robust LLM Architecture:** Powered by the Vercel AI SDK, with a built-in provider cascade. Primary responses are handled by Google's Gemini models, with easy configurations to fallback to Groq, OpenRouter, or local Ollama instances.
 - **Gothic Aesthetics:** Custom CSS Modules featuring deep blacks, muted golds, steel blues, and blood reds, complete with custom glyphs and glassmorphism elements.
