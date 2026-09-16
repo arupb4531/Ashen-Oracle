@@ -32,6 +32,31 @@ Ashen Oracle is a dark-fantasy web application that serves as an immersive AI as
 - **Icons:** Lucide React
 - **Audio:** Native HTML5 Web Audio API
 
+## 📂 Project Structure
+
+```text
+Ashen Oracle/
+├── docs/                   # Architecture and technical documentation
+├── public/                 # Static assets, cinematic intro video, and fonts
+├── app/
+│   ├── api/
+│   │   └── chat/           # Serverless API endpoint for LLM handling
+│   ├── chat/               # Main application interface and chat view
+│   ├── layout.jsx          # Root HTML layout and global providers
+│   └── page.jsx            # Entry point & cinematic intro orchestrator
+├── components/
+│   ├── effects/            # Visual & Audio Effects (CinematicIntro, SceneBackground)
+│   ├── layout/             # Main UI Components (ChatArea, Sidebar)
+│   └── ui/                 # Reusable UI elements (Button, CharacterCard)
+├── lib/
+│   ├── llm-providers.js    # Provider configuration (Gemini, Groq, OpenRouter)
+│   ├── personas.js         # Data structure for the different Guides
+│   ├── modes.js            # Tone/Style modifiers for the AI
+│   └── soundManager.js     # Procedural Web Audio API synthesizer
+├── .env.example            # Example environment variables
+└── README.md
+```
+
 ## 🏛 Architecture
 
 Ashen Oracle follows a modern Next.js (App Router) architecture tailored for building AI-integrated conversational interfaces with rich, dynamic front-end experiences.
@@ -94,7 +119,18 @@ sequenceDiagram
    ```
 
 3. **Configure Environment Variables:**
-   Copy the example environment file and fill in your API keys:
+   Create an `.env` or `.env.local` file in the project root:
+
+   ```bash
+   # Primary Provider (Required)
+   GEMINI_API_KEY=your_google_gemini_api_key_here
+
+   # Fallback Providers (Optional)
+   GROQ_API_KEY=your_groq_api_key_here
+   OPENROUTER_API_KEY=your_openrouter_api_key_here
+   ```
+
+   Tip: You can quickly copy the example file by running:
    ```bash
    cp .env.example .env
    ```
@@ -109,4 +145,4 @@ sequenceDiagram
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](./LICENSE).
